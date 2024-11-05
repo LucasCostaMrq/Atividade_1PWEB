@@ -4,11 +4,20 @@ body{
     display: flex;
 }
 
-.container{
-    display: flex;
-    flex-direction: row;
+.container .wrapper{
+    background-color: blueviolet;
+    display : flex;
+    height:100%
 }
 
 .container .column-one{
-    width: 100%;
+    background-color: rgb(255, 0, 0);
+    width: 75%;
+    height: 100%;
+
+}
+
+.container .column-two{
+    width:25%;
+    background-color: blue;
 }
