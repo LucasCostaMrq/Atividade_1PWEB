@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+    <form id="meuFormulario">
+        <div class="form-element">
+            <label for="placa">Placa</label>
+            <input type="text" id="placa" name="placa" required>
+        </div>
+      
+        <div class="form-element">
+            <label for="marca">Marca</label>
+            <input type="text" id="marca" name="marca" required>
+        </div>
+        
+        <div class="form-element">
+            <label for="modelo">Modelo</label>
+            <input type="text" id="modelo" name="modelo" required>
+        </div>
+
+        <div class="form-element">
+            <label for="marca">Cor</label>
+            <input type="text" id="cor" name="cor" >
+        </div>
+
+        <div class="form-element">
+            <label for="Ano">Ano</label>
+            <input type="text" id="ano" name="ano" >
+        </div>
+        <button type="submit">Enviar</button>
+      </form>
+      <a href="index.html">voltar para a listagem de carros</a>
+    <script>
+        document.getElementById('meuFormulario').addEventListener('submit', async function(event){
+            event.preventDefault();
+            const placa = document.getElementById('placa').value;
+            const marca = document.getElementById('marca').value;
+            const modelo = document.getElementById('modelo').value;
+            const cor = document.getElementById('cor').value;
+            const ano = document.getElementById('ano').value;
+
+            const car = {placa, marca, modelo, cor};
+
+            try{
+                const response = await fetch('https://mauricio.inf.br/p6/api/list/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(car)
+                });
+                if(response.ok){
+                    alert('Novo carro adicionado');
+                }
+                else{
+                    alert('erro ao adicionar o carro');
+                }
+
+            }catch(err){
+                alert('falha na operação: ' + err.message);
+            }
+        });
+    </script>
+</body>
+</html>
